@@ -3,13 +3,12 @@ import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const VSMS = () => {
-  
+  const urlParams = new URLSearchParams(window.location.search);
 
   const getURLParameter = (name) => {
-    const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
   };
-  const age=(getURLParameter("CA") || "");
+  const age=(getURLParameter("ca") || "");
   const formatToOneDecimal = (value) => parseFloat(value).toFixed(1);
   const name=getURLParameter("Name") || "";  
   const currentDate = new Date().toLocaleDateString();
@@ -23,7 +22,9 @@ const VSMS = () => {
   const LOC = getURLParameter("LOC") || "";
   const SOC = getURLParameter("SOC") || "";
   const SHG = getURLParameter("SHG") || "";
-  const CA = getURLParameter("CA") || "";
+  const dq = urlParams.get("dq") || "N/A";
+  const da = urlParams.get("da") || "N/A";
+	const formatteddq = isNaN(dq) ? dq : formatToOneDecimal(dq);
   return (
     <>
       <style>{`
@@ -53,7 +54,7 @@ const VSMS = () => {
  <div className="pdf-image flex flex-col font-manrope items-center p-8 bg-white min-h-screen" >
  <div className="pdf-page bg-white p-8 shadow-md rounded-md w-[210mm] h-[297mm]">
              <div>
-                    <h1 className='text-left text-sm'>Vineland Social Maturity Scale Report</h1>
+                    <h1 className='text-left text-sm'>Developmental Screening Test</h1>
                     <div className="w-full border-t-2 mt-2 border-[#9C00AD]"></div>
                 </div>
 
@@ -66,17 +67,17 @@ const VSMS = () => {
             fontWeight: "600",
             fontSize: "xx-large",
             color: "#94059f",
-            }}>VSMS <span style={{color:"black"}}> Screening:</span>
+            }}>DST <span style={{color:"black"}}> Screening:</span>
         </h1>
         <div style={{textAlign:"justify"}}>
-        The Vineland Social Maturity Scale (VSMS) measures the differential social capacities of an individual. It provides an estimate of Social Age (SA) and Social Quotient  (SQ), and shows high correlation (0.80) with intelligence. It is designed to measure social maturation in eight social areas: Self-help General (SHG), Self-help Eating (SHE), Self-help Dressing (SHD), Self-direction (SD), Occupation (OCC), Communication (COM), Locomotion (LOM), and Socialization (SOC). The Scale consists of 89 test items grouped into year levels. VSMS can be used for the age group of 0-15 years. 
+        The developmental screening test (DST) was developed by Bharat Raj is a nonverbal test designed to measure the mental development of children from birth to 15 years. The information is obtained by the use of a semi structured interview with the parents/caretakers without requiring the use of performance on any of the tasks. This is particularly useful for assessing children who are non-cooperative, those with multiple impairments or those with severe behavior problems making the test batteries unsuitable.  
                 <br />
                 
-                Social Age: <span id="SAmessage"
-                    style={{fontSize: "x-large", color: "#007bff"}}> {SA}</span> <br />  Social Quotient: <span id='isaascore'
-                    style={{fontSize: "x-large", color: "#007bff"}}>{SQ}</span> 
+                Developmental Age: <span id="SAmessage"
+                    style={{fontSize: "x-large", color: "#007bff"}}> {formatteddq}</span> <br />  Developmental Quotient: <span id='isaascore'
+                    style={{fontSize: "x-large", color: "#007bff"}}>{da}</span> 
                 <br /><br />
-        </div>
+        </div><br /><br />
         
         <div id="patientData" style={{fontSize:"larger"}}>
           <div><span className="label" >Patient Name:</span> <span id="isaapatientNamecell">{name}</span></div>
@@ -89,7 +90,7 @@ const VSMS = () => {
        
         
        
-        
+{/*         
         <center>
         <table border="4" style={{width: "50%", textAlign: "center", marginTop: "10px", border: "1px solid #d1d5db" , padding: "8px" }}>
                     <tr >
@@ -129,7 +130,7 @@ const VSMS = () => {
                         <td style={{ border: "1px solid #d1d5db", borderRight:"0px" ,  padding: "8px" }}>{SOC}</td>
                     </tr>
                 </table> 
-        </center> 
+        </center>  */}
         <br /><br />
         <div style={{fontSize: "12px",
             color: "#727a98",
@@ -137,15 +138,15 @@ const VSMS = () => {
             fontWeight: "600",
             lineHeight: "15px",
             textAlign:"justify"}}>
-              On VSMS the social quotient was calculated to be {SQ} which indicates no impairment in socio adaptive functioning. 
+              {/* On VSMS the social quotient was calculated to be {SQ} which indicates no impairment in socio adaptive functioning.  */}
             {/* <p>The  VSMS (Childhood Autism Rating Scale) test output provides an assessment of the child's behavior patterns based on their responses to key screening questions across various developmental domains.</p> <p> <br /> <strong>Lower VSMS Score:</strong> A lower score indicates that the child’s behaviors align closely with typical developmental milestones, suggesting a minimal likelihood of autism spectrum disorder (ASD). In this case, the child exhibits expected social interaction, communication, and behavioral patterns, indicating that the child’s development is progressing typically. </p> <br /><p> <strong>Higher VSMS Score:</strong> A higher score suggests that the child’s responses indicate a greater degree of atypical behaviors or developmental delays, which may be associated with autism spectrum disorder. This means that the child may experience challenges in areas such as social communication, emotional response, imitation, and flexibility. A higher score doesn’t confirm a diagnosis of autism but serves as an early indicator that further evaluation by a specialist may be necessary. </p> <br /> <p> The VSMS screening tool is designed to help identify children who may require additional assessment and intervention at an early stage. Early detection and timely intervention can play a crucial role in supporting a child’s developmental needs and improving long-term outcomes. </p> */}
         </div>
         {/* <h2 style={{textAlign:"left"}}>ISAA Score: <span id="isaascore">{SQ} </span></h2>
         <p style={{textAlign:"left"}}>Interpretation: <span id="SAmessage">{SA}</span></p> */}
 
-        <br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
          <div className="w-full flex justify-between items-center text-xs font-manrope mt-6 border-t-2 border-[#800080] pt-2">
-                    <span className='text-[10px]'>VSMS Report - {name}</span>
+                    <span className='text-[10px]'>DST Report - {name}</span>
                     <div className="text-center text-[10px]">
                         <span></span>
                         <br />

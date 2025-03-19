@@ -16,7 +16,7 @@ import ISAA4 from './isaa4';
 import MCHAT from './mchat';
 import MCHAT2 from './mchat2';
 import MCHAT3 from './mchat3';
-import CARS from './vsms';
+import VSMS from './vsms';
 import CARS2 from './cars2';
 import CARS3 from './cars3';
 
@@ -136,7 +136,7 @@ const ComponentToPrint = React.forwardRef(({ isisaaChecked, ismchatChecked, isca
 
 
     
-        <div className="pdf-page isaa-page"><CARS /></div>
+        <div className="pdf-page isaa-page"><VSMS /></div>
         {/* <div className="pdf-page isaa-page"><CARS2 /></div>
         <div className="pdf-page isaa-page"><CARS3 /></div>  */}
 

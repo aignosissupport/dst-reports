@@ -17,7 +17,7 @@ import ISAA4 from "./components/report pages/isaa4";
 import MCHAT from "./components/report pages/mchat";
 import MCHAT2 from "./components/report pages/mchat2";
 import MCHAT3 from "./components/report pages/mchat3";
-import VSMS from "./components/report pages/vsms";
+import VSMS from "./components/report pages/dst";
 import CARS2 from "./components/report pages/cars2";
 import CARS3 from "./components/report pages/cars3";
 // import ReactDOM from "react-dom";

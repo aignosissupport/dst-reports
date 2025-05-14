@@ -3,17 +3,26 @@ import React, { useEffect } from 'react';
 const DST = () => {
 const urlParams = new URLSearchParams(window.location.search);
 
-const getURLParameter = (name) => urlParams.get(name) || "";
+const getURLParameter = (name) => urlParams.get(name) || "N/A";
+
+const excelDateToJSDate = (serial) => {
+  const num = parseFloat(serial);
+  if (isNaN(num)) return "N/A";
+  const utcDays = Math.floor(num - 25569);
+  const utcValue = utcDays * 86400;
+  return new Date(utcValue * 1000).toLocaleDateString();
+};
 
 const patientData = {
-  doa: getURLParameter("doa") || "N/A",
-  dob: getURLParameter("dob") || "N/A",
-  name: getURLParameter("name") || "N/A",
-  ca: getURLParameter("ca") || "N/A",
-  da: getURLParameter("da") || "N/A",
-  dq: getURLParameter("dq") || "N/A",
+  name: getURLParameter("name"),
+  dob: excelDateToJSDate(getURLParameter("dob")),
+  doa: excelDateToJSDate(getURLParameter("doa")),
+  ca: getURLParameter("ca"),
+  da: getURLParameter("da"),
+  dq: getURLParameter("dq"),
   currentDate: new Date().toLocaleDateString()
 };
+
 
 
   return (

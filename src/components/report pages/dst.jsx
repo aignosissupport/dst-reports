@@ -5,6 +5,7 @@ const urlParams = new URLSearchParams(window.location.search);
 
 const getURLParameter = (name) => urlParams.get(name) || "N/A";
 
+// Convert Excel serial date to JS date string
 const excelDateToJSDate = (serial) => {
   const num = parseFloat(serial);
   if (isNaN(num)) return "N/A";
@@ -13,15 +14,24 @@ const excelDateToJSDate = (serial) => {
   return new Date(utcValue * 1000).toLocaleDateString();
 };
 
+// Validate dd/mm/yyyy format, else fallback
+const formatDOB = (dobStr) => {
+  if (!dobStr || !dobStr.includes("/")) return "N/A";
+  const [day, month, year] = dobStr.split("/");
+  const date = new Date(`${year}-${month}-${day}`);
+  return isNaN(date) ? "N/A" : date.toLocaleDateString();
+};
+
 const patientData = {
   name: getURLParameter("name"),
-  dob: excelDateToJSDate(getURLParameter("dob")),
+  dob: formatDOB(getURLParameter("dob")),
   doa: excelDateToJSDate(getURLParameter("doa")),
   ca: getURLParameter("ca"),
   da: getURLParameter("da"),
   dq: getURLParameter("dq"),
   currentDate: new Date().toLocaleDateString()
 };
+
 
 
 

@@ -71,7 +71,27 @@ const patientData = {
           </tbody>
         </table>
 
-        
+
+        <div className="mt-10 text-left text-gray-800">
+          {patientData.dq >= 85 ? (
+            <p>
+              The test results were indicative of normal development.
+            </p>
+          ) : patientData.dq >= 71 && patientData.dq <= 84 ? (
+            <p>
+              The test results were indicative of mild-to-moderate delay in development.
+            </p>
+          ) : patientData.dq <= 70 ? (
+            <p>
+              The test results were indicative of severe delay in development.
+            </p>
+          ) : (
+            <p>
+              The test results are void.
+            </p>
+          )}
+        </div>
+
 
         <div className="absolute bottom-8 left-8 right-8 flex justify-between text-xs text-gray-500 border-t border-purple-800 pt-2">
             <span>DST Report - {patientData.name}</span>

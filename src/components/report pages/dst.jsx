@@ -16,7 +16,7 @@ const excelDateToJSDate = (serial) => {
 
 const patientData = {
   name: getURLParameter("name"),
-  dob: getURLParameter("dob"),
+  dob: excelDateToJSDate(getURLParameter("dob")),
   doa: excelDateToJSDate(getURLParameter("doa")),
   ca: getURLParameter("ca"),
   da: getURLParameter("da"),
